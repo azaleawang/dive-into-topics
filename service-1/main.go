@@ -18,7 +18,7 @@ import (
 // )
 
 var (
-	addr = flag.String("addr", "localhost:50051", "the address of service 2 to get data")
+	addr = flag.String("addr", "localhost:8080", "the address of service 2 to get data")
 	// name = flag.String("name", defaultName, "Name to greet")
 )
 
@@ -39,19 +39,19 @@ func main() {
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 		defer cancel()
 
-		commentList, err := commentClient.GetAllComments(ctx, &pb.EmptyRequest{})
+		_, err := commentClient.GetAllComments(ctx, &pb.EmptyRequest{})
 		if err != nil {
 			http.Error(w, "Failed to get data", http.StatusInternalServerError)
 			return
 		}
 
 		// Print first 5 received comments
-		for i, comment := range commentList.Comments {
-			if i >= 5 {
-				break
-			}
-			log.Printf("Received Comment: %+v", comment)
-		}
+		// for i, comment := range commentList.Comments {
+		// 	if i >= 5 {
+		// 		break
+		// 	}
+		// 	log.Printf("Received Comment: %+v", comment)
+		// }
 
 		// Respond to the HTTP client
 		w.Write([]byte("Received all comments. Check server logs for details."))
