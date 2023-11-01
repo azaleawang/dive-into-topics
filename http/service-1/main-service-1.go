@@ -8,10 +8,11 @@ import (
 	"log"
 	"net/http"
 	"time"
+	// "fmt"
 )
 
 var (
-	addr = flag.String("addr", "http://localhost:8080/comments", "the address of service 2 to get data")
+	addr = flag.String("addr", "http://localhost:8081/comments", "the address of service 2 to get data")
 )
 
 func main() {

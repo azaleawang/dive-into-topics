@@ -8,7 +8,7 @@ import (
 
 func main() {
 	http.HandleFunc("/comments", func(w http.ResponseWriter, r *http.Request) {
-		data, err := os.ReadFile("../comments.json")
+		data, err := os.ReadFile("comments.json")
 		if err != nil {
 			http.Error(w, "Failed to read comments.json", http.StatusInternalServerError)
 			return
@@ -17,6 +17,6 @@ func main() {
 		w.Write(data)
 	})
 
-	log.Printf("HTTP server listening on :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Printf("HTTP server listening on :8081")
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
